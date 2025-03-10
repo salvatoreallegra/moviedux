@@ -4,6 +4,7 @@ import "../styles.css";
 
 export default function MoviesGrid() {
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     fetch("/movies.json")
       .then((response) => {
@@ -16,11 +17,28 @@ export default function MoviesGrid() {
       .catch((error) => console.error("Error fetching movies:", error));
   }, []);
 
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="movies-grid">
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
+    <div>
+      <input
+        className="search-input"
+        type="text"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+      <div className="movies-grid">
+        {filteredMovies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
     </div>
   );
 }

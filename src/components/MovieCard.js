@@ -8,7 +8,7 @@ export default function MovieCard({ movie }) {
   const getRatingClass = (rating) => {
     if (rating >= 8) {
       return "rating-good";
-    } else if (rating >= 4) {
+    } else if (rating >= 4 && rating < 8) {
       return "rating-ok";
     } else {
       return "rating-bad";
