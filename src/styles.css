@@ -141,11 +141,11 @@ body {
 }
 
 .rating-ok {
-  color: rgb(255, 209, 123);
+  color: rgb(0 , 0, 255);
 }
 
 .rating-bad {
-  color: rgb(255, 123, 123);
+  color: rgb(255, 0, 0);
 }
 
 .title {
